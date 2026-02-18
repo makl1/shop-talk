@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+numpy
+torch
+transformers
+pillow          # ← THIS is PIL
+qdrant-client
+boto3
+botocore
+prometheus-client
+python-multipart
