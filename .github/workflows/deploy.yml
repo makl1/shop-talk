@@ -1,0 +1,44 @@
+name: Deploy to Lightsail
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # allow manual trigger from GitHub UI
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Deploy to Lightsail
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.LIGHTSAIL_HOST }}
+          username: ${{ secrets.LIGHTSAIL_USER }}
+          key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
+          timeout: 600s
+          script: |
+            set -e
+            cd ~/shop-talk
+
+            echo "==> Pulling latest code..."
+            git pull origin main
+
+            echo "==> Rebuilding and restarting services..."
+            docker compose down --remove-orphans
+            docker compose up -d --build
+
+            echo "==> Waiting for services to initialise..."
+            sleep 30
+
+            echo "==> Health checks..."
+            curl -sf http://localhost:8000/health \
+              && echo "API healthy" \
+              || (echo "API not healthy" && docker compose logs api --tail=40 && exit 1)
+
+            curl -sf http://localhost:6333/healthz \
+              && echo " Qdrant healthy" \
+              || (echo " Qdrant not healthy" && docker compose logs qdrant --tail=20 && exit 1)
+
+            echo "==> Deploy complete."

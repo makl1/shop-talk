@@ -138,7 +138,7 @@ def main():
     if points:
         qdrant.upsert(collection_name=COLLECTION, points=points)
 
-    print(f"✅ Indexed {len(df):,} products into {COLLECTION} (CLIP multimodal)")
+    print(f" Indexed {len(df):,} products into {COLLECTION} (CLIP multimodal)")
 
 if __name__ == "__main__":
     main()
