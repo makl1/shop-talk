@@ -9,13 +9,10 @@ services:
 
   api:
     build: ./services/api
-    volumes:
-      - ${USERPROFILE}\.aws:/root/.aws:ro
+    env_file:
+      - .env
     environment:
-      AWS_PROFILE: default
-      QDRANT_URL: http://qdrant:6333      
-      COLLECTION_NAME: products_clip
-      EMBED_MODEL: sentence-transformers/all-MiniLM-L6-v2
+      QDRANT_URL: http://qdrant:6333
     ports:
       - "8000:8000"
     depends_on:
