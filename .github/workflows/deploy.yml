@@ -17,7 +17,7 @@ jobs:
           host: ${{ secrets.LIGHTSAIL_HOST }}
           username: ${{ secrets.LIGHTSAIL_USER }}
           key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
-          timeout: 600s
+          timeout: 1800s
           script: |
             set -e
             cd ~/shop-talk
@@ -30,7 +30,7 @@ jobs:
             docker compose up -d --build
 
             echo "==> Waiting for services to initialise..."
-            sleep 30
+            sleep 60
 
             echo "==> Health checks..."
             curl -sf http://localhost:8000/health \
