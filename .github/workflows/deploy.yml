@@ -37,8 +37,8 @@ jobs:
               && echo "API healthy" \
               || (echo "API not healthy" && docker compose logs api --tail=40 && exit 1)
 
-            curl -sf http://localhost:6333/health \
-              && echo " Qdrant healthy" \
-              || (echo " Qdrant not healthy" && docker compose logs qdrant --tail=20 && exit 1)
+            curl -sf http://localhost:6333/healthz \
+              && echo "Qdrant healthy" \
+              || (echo "Qdrant not healthy" && docker compose logs qdrant --tail=20 && exit 1)
 
             echo "==> Deploy complete."
