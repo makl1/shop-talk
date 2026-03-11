@@ -1,3 +1,6 @@
 /data
 .env
 *.pem
+services/api/__pycache__/main.cpython-313.pyc
+services/api/__pycache__/main.cpython-313.pyc
+tests/__pycache__/conftest.cpython-313-pytest-9.0.2.pyc

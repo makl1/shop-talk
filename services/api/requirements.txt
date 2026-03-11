@@ -1,11 +1,13 @@
-fastapi
-uvicorn
-numpy
-torch
-transformers
-pillow          # ← THIS is PIL
-qdrant-client
-boto3
-botocore
-prometheus-client
-python-multipart
+fastapi==0.115.5
+uvicorn==0.32.1
+numpy==1.26.4
+torch==2.5.1
+transformers==4.47.1
+pillow==11.0.0
+qdrant-client==1.12.1
+boto3==1.35.86
+botocore==1.35.86
+prometheus-client==0.21.1
+python-multipart==0.0.17
+slowapi==0.1.9
+tenacity==9.0.0

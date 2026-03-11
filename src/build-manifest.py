@@ -1,5 +1,4 @@
 
-import os
 import json
 import gzip
 import csv
@@ -16,10 +15,10 @@ MAX_ITEMS = 5000
 def load_images_lookup():
     if IMAGES_CSV.exists():
         df = pd.read_csv(IMAGES_CSV)
-    if IMAGES_CSV_GZ.exists():
+    elif IMAGES_CSV_GZ.exists():
         df = pd.read_csv(IMAGES_CSV_GZ, compression="gzip")
     else:
-         raise FileNotFoundError("Could not find images.csv or images.csv.gz")
+        raise FileNotFoundError("Could not find images.csv or images.csv.gz")
     
     cols = {c.lower(): c for c in df.columns}
     if "image_id" not in cols:

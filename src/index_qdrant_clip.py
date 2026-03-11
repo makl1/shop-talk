@@ -14,8 +14,8 @@ from qdrant_client.http import models as qm
 
 QDRANT_URL = os.getenv("QDRANT_URL", "http://localhost:6333")
 COLLECTION = os.getenv("COLLECTION_NAME", "products_clip")
-S3_BUCKET = os.getenv("S3_BUCKET", "")
-AWS_REGION = os.getenv("AWS_REGION", "us-west-2")
+S3_BUCKET = os.getenv("S3_BUCKET", "shoptalk-assistant")
+AWS_REGION = os.getenv("AWS_REGION", "us-east-2")
 
 CLIP_NAME = os.getenv("CLIP_MODEL", "openai/clip-vit-base-patch32")
 ALPHA = float(os.getenv("ALPHA", "0.5"))  # 0.5 = equal blend
